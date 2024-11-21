@@ -1,50 +1,32 @@
-class Produkts:
-    def __init__(self, name, amount, pvaip = 0 ):
-        self.skaits = amount
-        self.vards = name
-        self.pvaid = pvaip
-    
-    def mainit_skaitu(self, jaunais_skaits):
-        self.skaits = jaunais_skaits
-        self.info()
+class Item():
+    def __init__(self, title, category, quantity, price):
+        self.title = title
+        self.quantity = quantity
+        self.category = category
+        self.price = price
 
-    def mainit_pvaid(self, jaunais_pvaid):
-        self.pvaid = jaunais_pvaid
-        self.info()
-    
-    def mainit_vardu(self, jaunais_vards):
-        self.vards = jaunais_vards
-        self.info()
-    
-    def mainit_pvaid(self, jaunais_pvaid = ""):
-        if jaunais_pvaid == "":
-            if self.pvaid == "d":
-                self.pvaid = "p"
+    def change_title(self, new_title):
+        self.title = new_title
+
+    def sell_item(self):
+        self.quantity = int(self.quantity)
+        self.quantity -= 1
+
+    def update_category(self, new_category=""):
+        if new_category == "":
+            if self.category == "Gadget":
+                self.category = "Accessory"
             else:
-                self.pvaid = "d"
+                self.category = "Accessory"
         else:
-            self.pvaid = jaunais_pvaid
-        self.info()
+            self.category = new_category
+        self.show_info()
 
-    def info(self):
-        if self.pvaid == "p":
-            teksts = "programma"
-        elif self.pvaid == "d":
-            teksts = "detaļa"
+    def show_info(self):
+        if self.category == "Accessory":
+            category_name = "Accessory"
+        elif self.category == "Gadget":
+            category_name = "Gadget"
         else:
-            teksts = self.pvaid
-        print("Nosaukums : {}. Skaits : {} Programma vai detaļa : {}.".format(self.vards, self.skaits, teksts))
-        return "Nosaukums : {}. Skaits : {} Programma vai detaļa : {}.".format(self.vards, self.skaits, teksts)
-    
-
-
-
-class Dators(Produkts):
-    def __init__(self, name, manufacturer, age = 0):
-        super().__init__(name,"d", age)
-        self.razotajs = manufacturer
-        self.info()
-
-    def info(self):
-        super().info()
-        print("Ražotājs :", self.razotajs)
+            category_name = self.category
+        return f"Item Title: {self.title}\n Category: {category_name}\n Total Quantity: {self.quantity}\n Price: {self.price}€"
