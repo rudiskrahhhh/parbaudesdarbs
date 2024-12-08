@@ -14,19 +14,19 @@ class Item():
 
     def update_category(self, new_category=""):
         if new_category == "":
-            if self.category == "Gadget":
-                self.category = "Accessory"
+            if self.category == "aparats":
+                self.category = "lieta"
             else:
-                self.category = "Accessory"
+                self.category = "lieta"
         else:
             self.category = new_category
         self.show_info()
 
     def show_info(self):
-        if self.category == "Accessory":
-            category_name = "Accessory"
-        elif self.category == "Gadget":
-            category_name = "Gadget"
+        if self.category == "lieta":
+            category_name = "lieta"
+        elif self.category == "aparats":
+            category_name = "aparats"
         else:
             category_name = self.category
-        return f"Item Title: {self.title}\n Category: {category_name}\n Total Quantity: {self.quantity}\n Price: {self.price}€"
+        return f"nosaukums: {self.title}\n kategorija: {category_name}\n daudzums: {self.quantity}\n cena: {self.price}€"
